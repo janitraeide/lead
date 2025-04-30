@@ -59,7 +59,7 @@ export default function Sidebar() {
             <li className={styles.navItem}>
               <Link
                 href="/"
-                className={`${styles.navLink} ${pathname === '/' ? styles.active : ''}`}
+                className={`${styles.navLink} ${pathname === '/' || pathname === '/index/' ? styles.active : ''}`}
                 onClick={closeSidebar}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@ export default function Sidebar() {
             <li className={styles.navItem}>
               <Link
                 href="/csv-processor"
-                className={`${styles.navLink} ${pathname === '/csv-processor' ? styles.active : ''}`}
+                className={`${styles.navLink} ${pathname === '/csv-processor' || pathname === '/csv-processor/' ? styles.active : ''}`}
                 onClick={closeSidebar}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +94,7 @@ export default function Sidebar() {
                 onClick={closeSidebar}
                 style={{ cursor: 'default' }}
               >
-               
+
                 More tools coming soon...
               </a>
             </li>

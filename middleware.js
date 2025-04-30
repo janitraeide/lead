@@ -1,0 +1,17 @@
+import { NextResponse } from 'next/server';
+
+export function middleware(request) {
+  const url = request.nextUrl.clone();
+
+  // Add trailing slashes for consistency
+  if (url.pathname === '/csv-processor') {
+    url.pathname = '/csv-processor/';
+    return NextResponse.redirect(url);
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ['/csv-processor'],
+};

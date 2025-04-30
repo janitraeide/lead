@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/lead',
+  trailingSlash: true,
   images: {
     unoptimized: true,
-  },
-  eslint: {
-    // Disable ESLint during builds
-    ignoreDuringBuilds: true,
   },
 }
 
