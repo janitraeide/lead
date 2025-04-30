@@ -7,7 +7,7 @@ import styles from './Dashboard.module.css';
 export default function Dashboard() {
   const [processingHistory, setProcessingHistory] = useState([]);
   const [totalProcessed, setTotalProcessed] = useState(0);
-  
+
   useEffect(() => {
     // Load processing history from localStorage
     const history = localStorage.getItem('csvProcessingHistory');
@@ -17,14 +17,14 @@ export default function Dashboard() {
       setTotalProcessed(parsedHistory.length);
     }
   }, []);
-  
+
   return (
     <div className={styles.dashboard}>
       <div className={styles.header}>
         <h1 className={styles.title}>CULTJANI</h1>
         <p className={styles.subtitle}>Process and format your Meta/Facebook Lead Form data</p>
       </div>
-      
+
       <div className={styles.statsContainer}>
         <div className={styles.statCard}>
           <div className={styles.statIcon}>
@@ -39,7 +39,7 @@ export default function Dashboard() {
             <p className={styles.statValue}>{totalProcessed}</p>
           </div>
         </div>
-        
+
         <div className={styles.statCard}>
           <div className={styles.statIcon}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,14 +50,14 @@ export default function Dashboard() {
           <div className={styles.statInfo}>
             <h3 className={styles.statTitle}>Last Processed</h3>
             <p className={styles.statValue}>
-              {processingHistory.length > 0 
-                ? new Date(processingHistory[processingHistory.length - 1].date).toLocaleDateString() 
+              {processingHistory.length > 0
+                ? new Date(processingHistory[processingHistory.length - 1].date).toLocaleDateString()
                 : 'Never'}
             </p>
           </div>
         </div>
       </div>
-      
+
       <div className={styles.featuresContainer}>
         <h2 className={styles.sectionTitle}>Features</h2>
         <div className={styles.featureCards}>
@@ -76,7 +76,7 @@ export default function Dashboard() {
               Upload your CSV files from Meta/Facebook Lead Forms with drag-and-drop functionality.
             </p>
           </div>
-          
+
           <div className={styles.featureCard}>
             <div className={styles.featureIcon}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +89,7 @@ export default function Dashboard() {
               Edit column headers, remove unwanted columns, and customize your data structure.
             </p>
           </div>
-          
+
           <div className={styles.featureCard}>
             <div className={styles.featureIcon}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +103,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      
+
       <div className={styles.instructionsContainer}>
         <h2 className={styles.sectionTitle}>How to Use</h2>
         <div className={styles.instructionSteps}>
@@ -116,7 +116,7 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          
+
           <div className={styles.step}>
             <div className={styles.stepNumber}>2</div>
             <div className={styles.stepContent}>
@@ -126,19 +126,19 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          
+
           <div className={styles.step}>
             <div className={styles.stepNumber}>3</div>
             <div className={styles.stepContent}>
               <h3 className={styles.stepTitle}>Process and Download</h3>
               <p className={styles.stepDescription}>
-                Click the "Process and Download" button to apply your changes and download the processed CSV file.
+                Click the &quot;Process and Download&quot; button to apply your changes and download the processed CSV file.
               </p>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div className={styles.actionContainer}>
         <Link href="/csv-processor" className={styles.actionButton}>
           <span>Start Processing</span>
