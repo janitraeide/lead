@@ -58,7 +58,7 @@
 }
 
 .headerInput {
-  width: 100%;
+  width: 10rem;
   padding: 0.6rem;
   border: 1px solid var(--input-border);
   border-radius: 4px;
