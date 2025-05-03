@@ -12,9 +12,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "CSV Processor - Meta/Facebook Lead Form Data",
-  description: "Upload, edit, and format CSV data from Meta/Facebook Lead Forms",
+  title: {
+    default: "CULTJANI - Lead Management System",
+    template: "%s | CULTJANI"
+  },
+  description: "CULTJANI is a powerful lead management system for processing, filtering, and distributing Meta/Facebook Lead Form data",
+  keywords: ["lead management", "Facebook leads", "Meta leads", "CSV processing", "lead filtering", "lead distribution"],
+  authors: [{ name: "CULTJANI" }],
+  creator: "CULTJANI",
+  publisher: "CULTJANI",
   themeColor: "#121212",
+  viewport: "width=device-width, initial-scale=1",
+  robots: {
+    index: true,
+    follow: true
+  },
+  openGraph: {
+    title: "CULTJANI - Lead Management System",
+    description: "Process, filter, and distribute your Meta/Facebook leads efficiently",
+    url: "/",
+    siteName: "CULTJANI",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {

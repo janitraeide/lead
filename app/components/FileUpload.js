@@ -5,7 +5,11 @@ import { useDropzone } from 'react-dropzone';
 import Papa from 'papaparse';
 import styles from './FileUpload.module.css';
 
-export default function FileUpload({ onCsvUploaded }) {
+export default function FileUpload({
+  onCsvUploaded,
+  title = "Filter Leads",
+  subtitle = "Upload your CSV file to process"
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -52,8 +56,8 @@ export default function FileUpload({ onCsvUploaded }) {
 
   return (
     <div className={styles.uploadContainer}>
-      <h1 className={styles.title}>CSV Processor</h1>
-      <p className={styles.subtitle}>Upload your CSV file to process</p>
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.subtitle}>{subtitle}</p>
 
       <div
         {...getRootProps()}

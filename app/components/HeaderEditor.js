@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
 import styles from './HeaderEditor.module.css';
 import { isPhoneNumberColumn, formatPhoneNumber } from '../utils/phoneUtils';
@@ -12,6 +12,8 @@ export default function HeaderEditor({ onBackToUpload }) {
   const [phoneOptions, setPhoneOptions] = useState({});
   const [phoneColumns, setPhoneColumns] = useState([]);
   const [previewData, setPreviewData] = useState([]);
+  const [draggedIndex, setDraggedIndex] = useState(null);
+  const [dragOverIndex, setDragOverIndex] = useState(null);
 
   useEffect(() => {
     // Get data from sessionStorage
@@ -71,6 +73,45 @@ export default function HeaderEditor({ onBackToUpload }) {
       ...phoneOptions,
       [header]: option
     });
+  };
+
+  // Drag and drop handlers
+  const handleDragStart = (index) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e, index) => {
+    e.preventDefault();
+    setDragOverIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+  };
+
+  const handleDrop = (e, dropIndex) => {
+    e.preventDefault();
+
+    if (draggedIndex === null || draggedIndex === dropIndex) {
+      return;
+    }
+
+    // Create a copy of the editedHeaders array
+    const newEditedHeaders = [...editedHeaders];
+
+    // Remove the dragged item
+    const draggedItem = newEditedHeaders.splice(draggedIndex, 1)[0];
+
+    // Insert the dragged item at the drop position
+    newEditedHeaders.splice(dropIndex, 0, draggedItem);
+
+    // Update the state
+    setEditedHeaders(newEditedHeaders);
+
+    // Reset drag states
+    setDraggedIndex(null);
+    setDragOverIndex(null);
   };
 
   const processAndDownload = () => {
@@ -162,10 +203,20 @@ export default function HeaderEditor({ onBackToUpload }) {
       <h1 className={styles.title}>Edit CSV Headers</h1>
       <p className={styles.subtitle}>Customize your headers and format phone numbers</p>
 
+      <div className={styles.instructionContainer}>
+        <div className={styles.instruction}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5V19M12 5L6 11M12 5L18 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span>Drag rows to reorder columns in your CSV</span>
+        </div>
+      </div>
+
       <div className={styles.tableContainer}>
         <table className={styles.headerTable}>
           <thead>
             <tr>
+              <th></th>
               <th>Original Header</th>
               <th>New Header</th>
               <th>Actions</th>
@@ -175,7 +226,33 @@ export default function HeaderEditor({ onBackToUpload }) {
           </thead>
           <tbody>
             {editedHeaders.map((header, index) => (
-              <tr key={index} className={header.include ? '' : styles.deleted}>
+              <tr
+                key={index}
+                className={`
+                  ${header.include ? '' : styles.deleted}
+                  ${draggedIndex === index ? styles.dragging : ''}
+                  ${dragOverIndex === index ? styles.dragOver : ''}
+                `}
+                draggable={header.include}
+                onDragStart={() => handleDragStart(index)}
+                onDragOver={(e) => handleDragOver(e, index)}
+                onDragEnd={handleDragEnd}
+                onDrop={(e) => handleDrop(e, index)}
+              >
+                <td className={styles.dragHandle}>
+                  {header.include && (
+                    <div className={styles.dragIcon} title="Drag to reorder">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="6" r="2" fill="currentColor"/>
+                        <circle cx="9" cy="12" r="2" fill="currentColor"/>
+                        <circle cx="9" cy="18" r="2" fill="currentColor"/>
+                        <circle cx="15" cy="6" r="2" fill="currentColor"/>
+                        <circle cx="15" cy="12" r="2" fill="currentColor"/>
+                        <circle cx="15" cy="18" r="2" fill="currentColor"/>
+                      </svg>
+                    </div>
+                  )}
+                </td>
                 <td>{header.original}</td>
                 <td>
                   <input

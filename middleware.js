@@ -9,9 +9,14 @@ export function middleware(request) {
     return NextResponse.redirect(url);
   }
 
+  if (url.pathname === '/split-leads') {
+    url.pathname = '/split-leads/';
+    return NextResponse.redirect(url);
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/csv-processor'],
+  matcher: ['/csv-processor', '/split-leads'],
 };

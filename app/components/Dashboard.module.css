@@ -192,6 +192,8 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .actionButton {
@@ -205,6 +207,8 @@
   font-weight: 500;
   transition: background-color 0.2s, transform 0.2s;
   box-shadow: 0 4px 12px rgba(63, 140, 255, 0.3);
+  min-width: 180px;
+  justify-content: center;
 }
 
 .actionButton:hover {
@@ -212,28 +216,37 @@
   transform: translateY(-2px);
 }
 
+.secondaryButton {
+  background-color: var(--secondary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.secondaryButton:hover {
+  background-color: var(--secondary-hover);
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .title {
     font-size: 1.8rem;
   }
-  
+
   .statsContainer {
     flex-direction: column;
   }
-  
+
   .statCard {
     width: 100%;
   }
-  
+
   .featureCards {
     grid-template-columns: 1fr;
   }
-  
+
   .step {
     flex-direction: column;
   }
-  
+
   .stepNumber {
     margin-bottom: 1rem;
   }
@@ -243,11 +256,11 @@
   .title {
     font-size: 1.5rem;
   }
-  
+
   .sectionTitle {
     font-size: 1.3rem;
   }
-  
+
   .featureTitle, .stepTitle {
     font-size: 1rem;
   }

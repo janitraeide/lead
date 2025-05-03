@@ -71,7 +71,7 @@ export default function Dashboard() {
                 <path d="M10 9H9H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <h3 className={styles.featureTitle}>CSV Upload</h3>
+            <h3 className={styles.featureTitle}>Lead Filtering</h3>
             <p className={styles.featureDescription}>
               Upload your CSV files from Meta/Facebook Lead Forms with drag-and-drop functionality.
             </p>
@@ -101,6 +101,21 @@ export default function Dashboard() {
               Automatically detect and format phone numbers based on country codes and standard formats.
             </p>
           </div>
+
+          <div className={styles.featureCard}>
+            <div className={styles.featureIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8.5 11C10.7091 11 12.5 9.20914 12.5 7C12.5 4.79086 10.7091 3 8.5 3C6.29086 3 4.5 4.79086 4.5 7C4.5 9.20914 6.29086 11 8.5 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M20 8V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M23 11H17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 className={styles.featureTitle}>Split Leads</h3>
+            <p className={styles.featureDescription}>
+              Divide your leads evenly among multiple users and download as separate CSV files in a ZIP archive.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -112,7 +127,7 @@ export default function Dashboard() {
             <div className={styles.stepContent}>
               <h3 className={styles.stepTitle}>Upload CSV File</h3>
               <p className={styles.stepDescription}>
-                Go to the CSV Processor tab and upload your Meta/Facebook Lead Form CSV file using the drag-and-drop area or file selector.
+                Go to the Filter Leads tab and upload your Meta/Facebook Lead Form CSV file using the drag-and-drop area or file selector.
               </p>
             </div>
           </div>
@@ -136,18 +151,20 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
+
+          <div className={styles.step}>
+            <div className={styles.stepNumber}>4</div>
+            <div className={styles.stepContent}>
+              <h3 className={styles.stepTitle}>Split Leads (Optional)</h3>
+              <p className={styles.stepDescription}>
+                Go to the Split Leads tab to divide your leads among multiple users. Add user names and download a ZIP file with separate CSV files for each user.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className={styles.actionContainer}>
-        <Link href="/csv-processor/" className={styles.actionButton}>
-          <span>Start Processing</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </Link>
-      </div>
+
     </div>
   );
 }
